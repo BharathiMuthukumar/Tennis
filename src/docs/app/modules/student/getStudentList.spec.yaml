@@ -1,0 +1,127 @@
+paths:
+    /student/get:
+        get:
+            summary: Get Student List
+            description: This request is used to get Student List.
+            security:
+                - BearerAuthentication: []
+            tags:
+                - Student
+            responses:
+                200:
+                    description: 200 response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/student_list_get_response"
+                400:
+                    description: Invalid Request Body
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 400
+                                displayMessage: Invalid Request Body
+                                errorMessage: Invalid Request Body
+                403:
+                    description: Forbidden
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 403
+                                displayMessage: Forbidden
+                                errorMessage: Forbidden
+                404:
+                    description: Student Not Found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 404
+                                displayMessage: Student Not Found
+                                errorMessage: Student Not Found
+                401:
+                    description: Invalid Authorization
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            examples:
+                                Unauthorized Access:
+                                    description:
+                                        The Refresh token provided is not
+                                        authorized
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Unauthorized Access
+                                        errorMessage: Unauthorized Access
+                                Invalid Token:
+                                    description:
+                                        The Refresh token provided is not valid
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Invalid Token
+                                        errorMessage: Invalid Token
+                5XX:
+                    description: Any other response other than success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+components:
+    schemas:
+        student_list_get_response:
+            title: Student List Response Model
+            additionalProperties: false
+            type: object
+            properties:
+                success:
+                    type: boolean
+                    description: Success Status
+                statusCode:
+                    type: number
+                    description: Success Status Code
+                data:
+                    type: array
+                    description: List of Students
+                    items:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                            _id:
+                                type: string
+                            email:
+                                type: string
+                            firstName:
+                                type: string
+                            lastName:
+                                type: string
+                            contact:
+                                type: number
+                            gender:
+                                type: string
+                            dateOfBirth:
+                                type: string
+                            bloodGroup:
+                                type: string
+                            address:
+                                type: string 
+                            address:
+                                type: string
+                            city:
+                                type: string
+                            state:
+                                type: string
+                            country:
+                                type: string 
+                            zipcode:
+                                type: number                   
+                            isDeleted:
+                                type: boolean                       
+                successMessage:
+                    type: string
+                    description: Success Message of the request

@@ -1,0 +1,170 @@
+paths:
+    /student/register:
+        post:
+            summary: Register student
+            description: This request is used to register a new student
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/add_student_request"
+            tags:
+                - Student
+            responses:
+                201:
+                    description: 201 response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/add_student_response"
+                400:
+                    description: Invalid Request Body
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 400
+                                displayMessage: Invalid Request Body
+                                errorMessage: Invalid Request Body
+                403:
+                    description: Forbidden
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 403
+                                displayMessage: Forbidden
+                                errorMessage: Forbidden
+                404:
+                    description: Student Not Found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 404
+                                displayMessage: Student Not Found
+                                errorMessage: Student Not Found
+                401:
+                    description: Invalid Authorization
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            examples:
+                                Unauthorized Access:
+                                    description:
+                                        The Refresh token provided is not
+                                        authorized
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Unauthorized Access
+                                        errorMessage: Unauthorized Access
+                                Invalid Token:
+                                    description:
+                                        The Refresh token provided is not valid
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Invalid Token
+                                        errorMessage: Invalid Token
+                409:
+                    description: Student Already Exists
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 409
+                                displayMessage: Student Already Exists
+                                errorMessage: Student Already Exists
+                5XX:
+                    description: Any other response other than success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+components:
+    schemas:
+        add_student_request:
+            title: Student Request Model
+            type: object
+            example:
+                email: manibharathi@gmail.com
+                firstName: Mani
+                lastName: Bharathi
+                password: password@123
+                department: CSE
+                studentId: STUDENT01
+                contact: 9876543210
+                bloodGroup: O positive
+                dateOfBirth: 01-06-2002
+                gender: F
+                address: 81/54, jeeva nagar
+                city: Thanjavur
+                state: Tamilnadu
+                country: India
+                Zipcode: 614612
+                isDeleted: false
+            additionalProperties: false
+            properties:
+                email:
+                    type: string
+                    description: email of the Student
+                firstName:
+                    type: string
+                    description: firstName of the Student
+                lastName:
+                    type: string
+                    description: lastName of the Student
+                password:
+                    type: string
+                    description: password of the Student
+                studentId:
+                    type: string
+                    description:  of the Student    
+                contact:
+                    type: number
+                    description: phoneNo of the Student
+                bloodGroup:
+                    type: string
+                    description: BloodGroup of the Student
+                dateOfBirth:
+                    type: string
+                    description: dateOfBirth of the Student
+                gender:
+                    type: string
+                    description: gender of the Student
+                address:
+                    type: string
+                    description: address of the Student
+                city:
+                    type: string
+                    description: city of the Student
+                state:
+                    type: string
+                    description: state of the Student  
+                country:
+                    type: string
+                    description: country of the Student 
+                zipcode:
+                    type: number
+                    description: zipcode of the Student               
+                isDeleted:
+                    type: boolean
+                    description: delete status of the account
+        add_student_response:
+            title: Student Response Model
+            additionalProperties: false
+            type: object
+            properties:
+                success:
+                    type: boolean
+                    description: Success Status
+                statusCode:
+                    type: integer
+                    description: Success Status Code
+                successMessage:
+                    type: string
+                    description: Success Message of the request

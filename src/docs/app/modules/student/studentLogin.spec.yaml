@@ -1,0 +1,112 @@
+paths:
+    /student/login:
+        post:
+            tags:
+                - Student
+            summary: Student Login via E-mail
+            description: This request is used to Student login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/student_login_request"
+                required: true
+            responses:
+                "200":
+                    description: Success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/login_response_success"
+                "400":
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 400
+                                displayMessage: Invalid Request Body
+                                errorMessage: Invalid Request Body
+                                errors:
+                                    - path: .body.password
+                                      message:
+                                          should have required property
+                                          'password'
+                                      errorCode: required.openapi.validation
+                "401":
+                    description: Invalid Password
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 401
+                                errorMessage: Invalid Password
+                                displayMessage: Password is Incorrect
+                "429":
+                    description: Too many failed login attempts
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 429
+                                displayMessage: Too many failed login attempts
+                                errorMessage: Too many failed login attempts
+                "404":
+                    description: Student not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 404
+                                errorMessage: Customer Does Not Exist
+                                displayMessage: Customer not found
+components:
+    schemas:
+        student_login_request:
+            type: object
+            title: Login Request Model
+            additionalProperties: false
+            example:
+                email: manibharathi@gmail.com
+                password: manibharathi@123
+            required:
+                - email
+                - password
+            properties:
+                email:
+                    type: string
+                    minLength: 5
+                    maxLength: 120
+                    description: Email of the student
+                password:
+                    type: string
+                    minLength: 4
+                    maxLength: 16
+                    description: Password defined by the student
+        login_response_success:
+            type: object
+            title: Login Response Model
+            additionalProperties: false
+            example:
+                success: true
+                statusCode: 200
+                accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg
+                refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg
+                role: user
+            properties:
+                success:
+                    type: boolean
+                statusCode:
+                    type: integer
+                accessToken:
+                    type: string
+                    description:
+                        Token used to authenticate other endpoints. Pass
+                        'Authentication' in Header.
+                refreshToken:
+                    type: string
+                    description: Refresh Token used to generate new access token            

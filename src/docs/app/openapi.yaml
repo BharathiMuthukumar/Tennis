@@ -1,0 +1,462 @@
+openapi: 3.0.0
+info: {title: JetSynthesis Application API Server, description: '<i>The convention
+    industry has forever changed. However, the need for us to come together as a community
+    has never been greater. There will never be a substitute for human contact, but
+    giving people an alternative method to staying connected is our mission. Why sacrifice
+    if you could do both? </i><p><strong>Download swagger JSON document from <a href="/bo/swagger.json">Click
+    here</a></strong><p>', version: 0.1.0}
+servers:
+- {url: 'http://localhost:3000', description: Local Development Sever}
+- {url: 'https://jetsynthesys-api-app.augustasoftsol.com', description: Hosted Development
+    Sever}
+- {url: 'https://qa.rightlife.com/api', description: Hosted QA Sever}
+- {url: 'https://stage.rightlife.com/api', description: Hosted Stage Sever}
+paths:
+  /student/update:
+    put:
+      summary: Update Student
+      description: This request is used to update a Student.
+      security:
+      - BearerAuthentication: []
+      parameters:
+      - name: _id
+        in: path
+        required: true
+        schema: {type: string}
+      requestBody:
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/student_update_request'}
+      tags: [student]
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/student_update_response'}
+        '400':
+          description: Invalid Request Body
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 400, displayMessage: Invalid Request Body, errorMessage: Invalid
+                  Request Body}
+        '401':
+          description: Invalid Authorization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              examples:
+                Unauthorized Access:
+                  description: The Refresh token provided is not authorized
+                  value: {statusCode: 401, displayMessage: Unauthorized Access, errorMessage: Unauthorized
+                      Access}
+                Invalid Token:
+                  description: The Refresh token provided is not valid
+                  value: {statusCode: 401, displayMessage: Invalid Token, errorMessage: Invalid
+                      Token}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 403, displayMessage: Forbidden, errorMessage: Forbidden}
+        '404':
+          description: student Not Found
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 404, displayMessage: student Not Found, errorMessage: student
+                  Not Found}
+        '409':
+          description: student Already Exsist
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 403, displayMessage: student Already Exsist, errorMessage: student
+                  Already Exsist}
+        5XX:
+          description: Any other response other than success response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+  /student/register:
+    post:
+      summary: Register student
+      description: This request is used to register a new student
+      requestBody:
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/add_student_request'}
+      tags: [Student]
+      responses:
+        '201':
+          description: 201 response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/add_student_response'}
+        '400':
+          description: Invalid Request Body
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 400, displayMessage: Invalid Request Body, errorMessage: Invalid
+                  Request Body}
+        '401':
+          description: Invalid Authorization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              examples:
+                Unauthorized Access:
+                  description: The Refresh token provided is not authorized
+                  value: {statusCode: 401, displayMessage: Unauthorized Access, errorMessage: Unauthorized
+                      Access}
+                Invalid Token:
+                  description: The Refresh token provided is not valid
+                  value: {statusCode: 401, displayMessage: Invalid Token, errorMessage: Invalid
+                      Token}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 403, displayMessage: Forbidden, errorMessage: Forbidden}
+        '404':
+          description: Student Not Found
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 404, displayMessage: Student Not Found, errorMessage: Student
+                  Not Found}
+        '409':
+          description: Student Already Exists
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 409, displayMessage: Student Already Exists, errorMessage: Student
+                  Already Exists}
+        5XX:
+          description: Any other response other than success response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+  /student/login:
+    post:
+      tags: [Student]
+      summary: Student Login via E-mail
+      description: This request is used to Student login
+      requestBody:
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/student_login_request'}
+        required: true
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/login_response_success'}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example:
+                statusCode: 400
+                displayMessage: Invalid Request Body
+                errorMessage: Invalid Request Body
+                errors:
+                - {path: .body.password, message: should have required property 'password',
+                  errorCode: required.openapi.validation}
+        '401':
+          description: Invalid Password
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 401, errorMessage: Invalid Password, displayMessage: Password
+                  is Incorrect}
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 404, errorMessage: Customer Does Not Exist, displayMessage: Customer
+                  not found}
+        '429':
+          description: Too many failed login attempts
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 429, displayMessage: Too many failed login attempts,
+                errorMessage: Too many failed login attempts}
+  /student/get:
+    get:
+      summary: Get Student List
+      description: This request is used to get Student List.
+      security:
+      - BearerAuthentication: []
+      tags: [Student]
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/student_list_get_response'}
+        '400':
+          description: Invalid Request Body
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 400, displayMessage: Invalid Request Body, errorMessage: Invalid
+                  Request Body}
+        '401':
+          description: Invalid Authorization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              examples:
+                Unauthorized Access:
+                  description: The Refresh token provided is not authorized
+                  value: {statusCode: 401, displayMessage: Unauthorized Access, errorMessage: Unauthorized
+                      Access}
+                Invalid Token:
+                  description: The Refresh token provided is not valid
+                  value: {statusCode: 401, displayMessage: Invalid Token, errorMessage: Invalid
+                      Token}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 403, displayMessage: Forbidden, errorMessage: Forbidden}
+        '404':
+          description: Student Not Found
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 404, displayMessage: Student Not Found, errorMessage: Student
+                  Not Found}
+        5XX:
+          description: Any other response other than success response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+  /student/delete:
+    delete:
+      tags: [Student]
+      summary: Delete Student account
+      security:
+      - BearerAuthentication: []
+      description: This Request is for Deleting the Student account
+      parameters:
+      - name: _id
+        in: path
+        required: true
+        schema: {type: string}
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/student_account_delete_success_response'}
+        '400':
+          description: Invalid Request Query
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 400, displayMessage: Invalid Request Query, errorMessage: Invalid
+                  Request Query}
+        '401':
+          description: Invalid Authorization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              examples:
+                Unauthorized Access:
+                  description: The Refresh token provided is not authorized
+                  value: {statusCode: 401, displayMessage: Unauthorized Access, errorMessage: Unauthorized
+                      Access}
+                Invalid Token:
+                  description: The Refresh token provided is not valid
+                  value: {statusCode: 401, displayMessage: Invalid Token, errorMessage: Invalid
+                      Token}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 403, displayMessage: Forbidden, errorMessage: Forbidden}
+        '404':
+          description: Student Not Found
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+              example: {statusCode: 404, displayMessage: Student Not Found, errorMessage: Student
+                  Not Found}
+        5XX:
+          description: Any other response other than success response
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/default_error_response'}
+components:
+  securitySchemes:
+    BearerAuthentication: {type: apiKey, in: header, name: Authorization}
+  schemas:
+    default_success_response:
+      title: Default success response
+      type: object
+      additionalProperties: false
+      properties:
+        success: {type: boolean}
+        statusCode: {type: integer}
+        successMessage: {type: string, description: Success Message of the request}
+    default_error_response:
+      title: Default Error Response Model
+      example: {statusCode: 400, errorMessage: Invalid Request Body, displayMessage: Field
+          missing}
+      type: object
+      properties:
+        statusCode: {type: number, description: HTTP status code as per standard}
+        errorMessage: {type: string, description: A short description or developer
+            message}
+        displayMessage: {type: string, description: Display message to frontend}
+    unauthorized_error_response:
+      title: Unauthorized Error Response Model
+      example: {statusCode: 401, errorMessage: Invalid Token, displayMessage: Invalid
+          Token}
+      type: object
+      properties:
+        statusCode: {type: number, description: HTTP status code as per standard}
+        errorMessage: {type: string, description: A short description or developer
+            message}
+        displayMessage: {type: string, description: Display message to frontend}
+    student_update_request:
+      title: Customer Update Request Model
+      example: {email: manibharathi@gmail.com, firstName: Mani, lastName: Bharathi,
+        password: password@123, department: CSE, studentId: STUDENT01, contact: 9876543210,
+        bloodGroup: O positive, dateOfBirth: 01-06-2002, gender: F, address: '81/54,
+          jeeva nagar', city: Thanjavur, state: Tamilnadu, country: India, Zipcode: 614612,
+        isDeleted: false}
+      additionalProperties: false
+      type: object
+      properties:
+        email: {type: string, description: email of the Student}
+        firstName: {type: string, description: firstName of the Student}
+        lastName: {type: string, description: lastName of the Student}
+        password: {type: string, description: password of the Student}
+        studentId: {type: string, description: of the Student}
+        contact: {type: number, description: phoneNo of the Student}
+        bloodGroup: {type: string, description: BloodGroup of the Student}
+        dateOfBirth: {type: string, description: dateOfBirth of the Student}
+        gender: {type: string, description: gender of the Student}
+        address: {type: string, description: address of the Student}
+        city: {type: string, description: city of the Student}
+        state: {type: string, description: state of the Student}
+        country: {type: string, description: country of the Student}
+        zipcode: {type: number, description: zipcode of the Student}
+        isDeleted: {type: boolean, description: delete status of the account}
+    student_update_response:
+      title: Customer Update Response Model
+      additionalProperties: false
+      type: object
+      properties:
+        success: {type: boolean}
+        statusCode: {type: integer}
+        successMessage: {type: string, description: Success Message of the request}
+    add_student_request:
+      title: Student Request Model
+      type: object
+      example: {email: manibharathi@gmail.com, firstName: Mani, lastName: Bharathi,
+        password: password@123, department: CSE, studentId: STUDENT01, contact: 9876543210,
+        bloodGroup: O positive, dateOfBirth: 01-06-2002, gender: F, address: '81/54,
+          jeeva nagar', city: Thanjavur, state: Tamilnadu, country: India, Zipcode: 614612,
+        isDeleted: false}
+      additionalProperties: false
+      properties:
+        email: {type: string, description: email of the Student}
+        firstName: {type: string, description: firstName of the Student}
+        lastName: {type: string, description: lastName of the Student}
+        password: {type: string, description: password of the Student}
+        studentId: {type: string, description: of the Student}
+        contact: {type: number, description: phoneNo of the Student}
+        bloodGroup: {type: string, description: BloodGroup of the Student}
+        dateOfBirth: {type: string, description: dateOfBirth of the Student}
+        gender: {type: string, description: gender of the Student}
+        address: {type: string, description: address of the Student}
+        city: {type: string, description: city of the Student}
+        state: {type: string, description: state of the Student}
+        country: {type: string, description: country of the Student}
+        zipcode: {type: number, description: zipcode of the Student}
+        isDeleted: {type: boolean, description: delete status of the account}
+    add_student_response:
+      title: Student Response Model
+      additionalProperties: false
+      type: object
+      properties:
+        success: {type: boolean, description: Success Status}
+        statusCode: {type: integer, description: Success Status Code}
+        successMessage: {type: string, description: Success Message of the request}
+    student_login_request:
+      type: object
+      title: Login Request Model
+      additionalProperties: false
+      example: {email: manibharathi@gmail.com, password: manibharathi@123}
+      required: [email, password]
+      properties:
+        email: {type: string, minLength: 5, maxLength: 120, description: Email of
+            the student}
+        password: {type: string, minLength: 4, maxLength: 16, description: Password
+            defined by the student}
+    login_response_success:
+      type: object
+      title: Login Response Model
+      additionalProperties: false
+      example: {success: true, statusCode: 200, accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg,
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg,
+        role: user}
+      properties:
+        success: {type: boolean}
+        statusCode: {type: integer}
+        accessToken: {type: string, description: Token used to authenticate other
+            endpoints. Pass 'Authentication' in Header.}
+        refreshToken: {type: string, description: Refresh Token used to generate new
+            access token}
+    student_list_get_response:
+      title: Student List Response Model
+      additionalProperties: false
+      type: object
+      properties:
+        success: {type: boolean, description: Success Status}
+        statusCode: {type: number, description: Success Status Code}
+        data:
+          type: array
+          description: List of Students
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              _id: {type: string}
+              email: {type: string}
+              firstName: {type: string}
+              lastName: {type: string}
+              contact: {type: number}
+              gender: {type: string}
+              dateOfBirth: {type: string}
+              bloodGroup: {type: string}
+              address: {type: string}
+              city: {type: string}
+              state: {type: string}
+              country: {type: string}
+              zipcode: {type: number}
+              isDeleted: {type: boolean}
+        successMessage: {type: string, description: Success Message of the request}
+    student_account_delete_success_response:
+      title: Delete Student Account Response Model
+      type: object
+      additionalProperties: false
+      description: This schema defines the request to delete Student account
+      properties:
+        success: {type: boolean}
+        statusCode: {type: integer}
+        successMessage: {type: string, description: Success Message of the request}

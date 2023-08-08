@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: JetSynthesis Application API Server
+  description: '<i>The convention industry has forever changed. However, the need for us to come together as a community has never been greater. There will never be a substitute for human contact, but giving people an alternative method to staying connected is our mission. Why sacrifice if you could do both?
+</i><p><strong>Download swagger JSON document from <a href="/bo/swagger.json">Click here</a></strong><p>'
+  version: 0.1.0
+servers:
+  - url: http://localhost:3000
+    description: Local Development Sever
+  - url: https://jetsynthesys-api-app.augustasoftsol.com
+    description: Hosted Development Sever
+  - url: https://qa.rightlife.com/api
+    description: Hosted QA Sever
+  - url: https://stage.rightlife.com/api
+    description: Hosted Stage Sever
+paths: {}
+components:
+  securitySchemes:
+    BearerAuthentication:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    default_success_response:
+      title: Default success response
+      type: object
+      additionalProperties: false
+      properties:
+        success:
+          type: boolean
+        statusCode:
+          type: integer
+        successMessage:
+          type: string
+          description: Success Message of the request
+    default_error_response:
+      title: Default Error Response Model
+      example:
+        statusCode: 400
+        errorMessage: Invalid Request Body
+        displayMessage: Field missing
+      type: object
+      properties:
+        statusCode:
+          type: number
+          description: HTTP status code as per standard
+        errorMessage:
+          type: string
+          description: A short description or developer message
+        displayMessage:
+          type: string
+          description: Display message to frontend
+    unauthorized_error_response:
+      title: Unauthorized Error Response Model
+      example:
+        statusCode: 401
+        errorMessage: Invalid Token
+        displayMessage: Invalid Token
+      type: object
+      properties:
+        statusCode:
+          type: number
+          description: HTTP status code as per standard
+        errorMessage:
+          type: string
+          description: A short description or developer message
+        displayMessage:
+          type: string
+          description: Display message to frontend
+    
+                
+
+

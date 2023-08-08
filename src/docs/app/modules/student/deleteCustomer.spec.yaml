@@ -1,0 +1,96 @@
+paths:
+    /student/delete:
+        delete:
+            tags:
+                - Student
+            summary: Delete Student account
+            security:
+                - BearerAuthentication: []
+            description:
+                This Request is for Deleting the Student account
+            parameters:
+                - name: _id
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                200:
+                    description: 200 response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/student_account_delete_success_response'
+                400:
+                    description: Invalid Request Query
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/default_error_response'
+                            example:
+                                statusCode: 400
+                                displayMessage: Invalid Request Query
+                                errorMessage: Invalid Request Query
+                403:
+                    description: Forbidden
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/default_error_response'
+                            example:
+                                statusCode: 403
+                                displayMessage: Forbidden
+                                errorMessage: Forbidden
+                404:
+                    description: Student Not Found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/default_error_response'
+                            example:
+                                statusCode: 404
+                                displayMessage: Student Not Found
+                                errorMessage: Student Not Found
+                401:
+                    description: Invalid Authorization
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/default_error_response'
+                            examples:
+                                Unauthorized Access:
+                                    description:
+                                        The Refresh token provided is not
+                                        authorized
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Unauthorized Access
+                                        errorMessage: Unauthorized Access
+                                Invalid Token:
+                                    description:
+                                        The Refresh token provided is not valid
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Invalid Token
+                                        errorMessage: Invalid Token
+                5XX:
+                    description: Any other response other than success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/default_error_response'
+components:
+    schemas:
+        student_account_delete_success_response:
+            title: Delete Student Account Response Model
+            type: object
+            additionalProperties: false
+            description: This schema defines the request to delete Student account
+            properties:
+                success:
+                    type: boolean
+                statusCode:
+                    type: integer
+                successMessage:
+                    type: string
+                    description: Success Message of the request

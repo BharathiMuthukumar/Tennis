@@ -1,0 +1,176 @@
+paths:
+    /student/update:
+        put:
+            summary: Update Student
+            description: This request is used to update a Student.
+            security:
+                - BearerAuthentication: []
+            parameters:
+                - name: _id
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/student_update_request"
+            tags:
+                - student
+            responses:
+                200:
+                    description: 200 response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/student_update_response"
+                400:
+                    description: Invalid Request Body
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 400
+                                displayMessage: Invalid Request Body
+                                errorMessage: Invalid Request Body
+                403:
+                    description: Forbidden
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 403
+                                displayMessage: Forbidden
+                                errorMessage: Forbidden
+                404:
+                    description: student Not Found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 404
+                                displayMessage: student Not Found
+                                errorMessage: student Not Found
+                401:
+                    description: Invalid Authorization
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            examples:
+                                Unauthorized Access:
+                                    description:
+                                        The Refresh token provided is not
+                                        authorized
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Unauthorized Access
+                                        errorMessage: Unauthorized Access
+                                Invalid Token:
+                                    description:
+                                        The Refresh token provided is not valid
+                                    value:
+                                        statusCode: 401
+                                        displayMessage: Invalid Token
+                                        errorMessage: Invalid Token
+                409:
+                    description: student Already Exsist
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+                            example:
+                                statusCode: 403
+                                displayMessage: student Already Exsist
+                                errorMessage: student Already Exsist
+                5XX:
+                    description: Any other response other than success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/default_error_response"
+components:
+    schemas:
+        student_update_request:
+            title: Customer Update Request Model
+            example:
+                email: manibharathi@gmail.com
+                firstName: Mani
+                lastName: Bharathi
+                password: password@123
+                department: CSE
+                studentId: STUDENT01
+                contact: 9876543210
+                bloodGroup: O positive
+                dateOfBirth: 01-06-2002
+                gender: F
+                address: 81/54, jeeva nagar
+                city: Thanjavur
+                state: Tamilnadu
+                country: India
+                Zipcode: 614612
+                isDeleted: false
+            additionalProperties: false
+            type: object
+            properties:
+                email:
+                    type: string
+                    description: email of the Student
+                firstName:
+                    type: string
+                    description: firstName of the Student
+                lastName:
+                    type: string
+                    description: lastName of the Student
+                password:
+                    type: string
+                    description: password of the Student
+                studentId:
+                    type: string
+                    description:  of the Student    
+                contact:
+                    type: number
+                    description: phoneNo of the Student
+                bloodGroup:
+                    type: string
+                    description: BloodGroup of the Student
+                dateOfBirth:
+                    type: string
+                    description: dateOfBirth of the Student
+                gender:
+                    type: string
+                    description: gender of the Student
+                address:
+                    type: string
+                    description: address of the Student
+                city:
+                    type: string
+                    description: city of the Student
+                state:
+                    type: string
+                    description: state of the Student  
+                country:
+                    type: string
+                    description: country of the Student 
+                zipcode:
+                    type: number
+                    description: zipcode of the Student               
+                isDeleted:
+                    type: boolean
+                    description: delete status of the account    
+        student_update_response:
+            title: Customer Update Response Model
+            additionalProperties: false
+            type: object
+            properties:
+                success:
+                    type: boolean
+                statusCode:
+                    type: integer
+                successMessage:
+                    type: string
+                    description: Success Message of the request
