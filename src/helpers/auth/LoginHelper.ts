@@ -1,17 +1,9 @@
-
 import { ResponseBody } from "../../controllers/user/login/types"
-
-
 import { HydratedDocument } from "mongoose";
-
-
 import { Iusers } from "../../models/userModel";
 import { generateForUser } from "../jwt";
 
-
-
 export async function generateUserLoginResponse(
-
 	user: HydratedDocument<Iusers> ,
 	
 ): Promise<ResponseBody > {
