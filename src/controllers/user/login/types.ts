@@ -2,11 +2,11 @@
 
 export interface RequestBody {
   /**
-   * Email of the student
+   * Email of the user
    */
   email: string;
   /**
-   * Password defined by the student
+   * Password defined by the user
    */
   password: string;
 }

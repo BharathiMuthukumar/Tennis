@@ -2,59 +2,59 @@
 
 export interface RequestBody {
   /**
-   * email of the Student
+   * email of the user
    */
   email?: string;
   /**
-   * firstName of the Student
+   * firstName of the user
    */
   firstName?: string;
   /**
-   * lastName of the Student
+   * lastName of the user
    */
   lastName?: string;
   /**
-   * password of the Student
+   * password of the user
    */
   password?: string;
   /**
-   * of the Student
+   * of the user
    */
-  studentId?: string;
+  userId?: string;
   /**
-   * phoneNo of the Student
+   * phoneNo of the user
    */
   contact?: number;
   /**
-   * BloodGroup of the Student
+   * BloodGroup of the user
    */
   bloodGroup?: string;
   /**
-   * dateOfBirth of the Student
+   * dateOfBirth of the user
    */
   dateOfBirth?: string;
   /**
-   * gender of the Student
+   * gender of the user
    */
   gender?: string;
   /**
-   * address of the Student
+   * address of the user
    */
   address?: string;
   /**
-   * city of the Student
+   * city of the user
    */
   city?: string;
   /**
-   * state of the Student
+   * state of the user
    */
   state?: string;
   /**
-   * country of the Student
+   * country of the user
    */
   country?: string;
   /**
-   * zipcode of the Student
+   * zipcode of the user
    */
   zipcode?: number;
   /**

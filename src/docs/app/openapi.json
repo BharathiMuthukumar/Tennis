@@ -24,10 +24,10 @@
     }
   ],
   "paths": {
-    "/student/update": {
+    "/user/update": {
       "put": {
-        "summary": "Update Student",
-        "description": "This request is used to update a Student.",
+        "summary": "Update user",
+        "description": "This request is used to update a user.",
         "security": [
           {
             "BearerAuthentication": []
@@ -47,13 +47,13 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/student_update_request"
+                "$ref": "#/components/schemas/user_update_request"
               }
             }
           }
         },
         "tags": [
-          "student"
+          "user"
         ],
         "responses": {
           "200": {
@@ -61,7 +61,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/student_update_response"
+                  "$ref": "#/components/schemas/user_update_response"
                 }
               }
             }
@@ -125,7 +125,7 @@
             }
           },
           "404": {
-            "description": "student Not Found",
+            "description": "user Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -133,14 +133,14 @@
                 },
                 "example": {
                   "statusCode": 404,
-                  "displayMessage": "student Not Found",
-                  "errorMessage": "student Not Found"
+                  "displayMessage": "user Not Found",
+                  "errorMessage": "user Not Found"
                 }
               }
             }
           },
           "409": {
-            "description": "student Already Exsist",
+            "description": "user Already Exsist",
             "content": {
               "application/json": {
                 "schema": {
@@ -148,8 +148,8 @@
                 },
                 "example": {
                   "statusCode": 403,
-                  "displayMessage": "student Already Exsist",
-                  "errorMessage": "student Already Exsist"
+                  "displayMessage": "user Already Exsist",
+                  "errorMessage": "user Already Exsist"
                 }
               }
             }
@@ -167,21 +167,21 @@
         }
       }
     },
-    "/student/register": {
+    "/user/register": {
       "post": {
-        "summary": "Register student",
-        "description": "This request is used to register a new student",
+        "summary": "Register user",
+        "description": "This request is used to register a new user",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/add_student_request"
+                "$ref": "#/components/schemas/add_user_request"
               }
             }
           }
         },
         "tags": [
-          "Student"
+          "user"
         ],
         "responses": {
           "201": {
@@ -189,7 +189,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/add_student_response"
+                  "$ref": "#/components/schemas/add_user_response"
                 }
               }
             }
@@ -253,7 +253,7 @@
             }
           },
           "404": {
-            "description": "Student Not Found",
+            "description": "user Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -261,14 +261,14 @@
                 },
                 "example": {
                   "statusCode": 404,
-                  "displayMessage": "Student Not Found",
-                  "errorMessage": "Student Not Found"
+                  "displayMessage": "user Not Found",
+                  "errorMessage": "user Not Found"
                 }
               }
             }
           },
           "409": {
-            "description": "Student Already Exists",
+            "description": "user Already Exists",
             "content": {
               "application/json": {
                 "schema": {
@@ -276,8 +276,8 @@
                 },
                 "example": {
                   "statusCode": 409,
-                  "displayMessage": "Student Already Exists",
-                  "errorMessage": "Student Already Exists"
+                  "displayMessage": "user Already Exists",
+                  "errorMessage": "user Already Exists"
                 }
               }
             }
@@ -295,18 +295,18 @@
         }
       }
     },
-    "/student/login": {
+    "/user/login": {
       "post": {
         "tags": [
-          "Student"
+          "user"
         ],
-        "summary": "Student Login via E-mail",
-        "description": "This request is used to Student login",
+        "summary": "user Login via E-mail",
+        "description": "This request is used to user login",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/student_login_request"
+                "$ref": "#/components/schemas/user_login_request"
               }
             }
           },
@@ -361,7 +361,7 @@
             }
           },
           "404": {
-            "description": "Student not found",
+            "description": "user not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -369,8 +369,8 @@
                 },
                 "example": {
                   "statusCode": 404,
-                  "errorMessage": "Customer Does Not Exist",
-                  "displayMessage": "Customer not found"
+                  "errorMessage": "user Does Not Exist",
+                  "displayMessage": "user not found"
                 }
               }
             }
@@ -393,17 +393,17 @@
         }
       }
     },
-    "/student/get": {
+    "/user/get": {
       "get": {
-        "summary": "Get Student List",
-        "description": "This request is used to get Student List.",
+        "summary": "Get user List",
+        "description": "This request is used to get user List.",
         "security": [
           {
             "BearerAuthentication": []
           }
         ],
         "tags": [
-          "Student"
+          "user"
         ],
         "responses": {
           "200": {
@@ -411,7 +411,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/student_list_get_response"
+                  "$ref": "#/components/schemas/user_list_get_response"
                 }
               }
             }
@@ -475,7 +475,7 @@
             }
           },
           "404": {
-            "description": "Student Not Found",
+            "description": "user Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -483,8 +483,8 @@
                 },
                 "example": {
                   "statusCode": 404,
-                  "displayMessage": "Student Not Found",
-                  "errorMessage": "Student Not Found"
+                  "displayMessage": "user Not Found",
+                  "errorMessage": "user Not Found"
                 }
               }
             }
@@ -502,18 +502,18 @@
         }
       }
     },
-    "/student/delete": {
+    "/user/delete": {
       "delete": {
         "tags": [
-          "Student"
+          "user"
         ],
-        "summary": "Delete Student account",
+        "summary": "Delete user account",
         "security": [
           {
             "BearerAuthentication": []
           }
         ],
-        "description": "This Request is for Deleting the Student account",
+        "description": "This Request is for Deleting the user account",
         "parameters": [
           {
             "name": "_id",
@@ -530,7 +530,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/student_account_delete_success_response"
+                  "$ref": "#/components/schemas/user_account_delete_success_response"
                 }
               }
             }
@@ -594,7 +594,7 @@
             }
           },
           "404": {
-            "description": "Student Not Found",
+            "description": "user Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -602,8 +602,8 @@
                 },
                 "example": {
                   "statusCode": 404,
-                  "displayMessage": "Student Not Found",
-                  "errorMessage": "Student Not Found"
+                  "displayMessage": "user Not Found",
+                  "errorMessage": "user Not Found"
                 }
               }
             }
@@ -694,15 +694,15 @@
           }
         }
       },
-      "student_update_request": {
-        "title": "Customer Update Request Model",
+      "user_update_request": {
+        "title": "user Update Request Model",
         "example": {
           "email": "manibharathi@gmail.com",
           "firstName": "Mani",
           "lastName": "Bharathi",
           "password": "password@123",
           "department": "CSE",
-          "studentId": "STUDENT01",
+          "userId": "user01",
           "contact": 9876543210,
           "bloodGroup": "O positive",
           "dateOfBirth": "01-06-2002",
@@ -719,59 +719,59 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "email of the Student"
+            "description": "email of the user"
           },
           "firstName": {
             "type": "string",
-            "description": "firstName of the Student"
+            "description": "firstName of the user"
           },
           "lastName": {
             "type": "string",
-            "description": "lastName of the Student"
+            "description": "lastName of the user"
           },
           "password": {
             "type": "string",
-            "description": "password of the Student"
+            "description": "password of the user"
           },
-          "studentId": {
+          "userId": {
             "type": "string",
-            "description": "of the Student"
+            "description": "of the user"
           },
           "contact": {
             "type": "number",
-            "description": "phoneNo of the Student"
+            "description": "phoneNo of the user"
           },
           "bloodGroup": {
             "type": "string",
-            "description": "BloodGroup of the Student"
+            "description": "BloodGroup of the user"
           },
           "dateOfBirth": {
             "type": "string",
-            "description": "dateOfBirth of the Student"
+            "description": "dateOfBirth of the user"
           },
           "gender": {
             "type": "string",
-            "description": "gender of the Student"
+            "description": "gender of the user"
           },
           "address": {
             "type": "string",
-            "description": "address of the Student"
+            "description": "address of the user"
           },
           "city": {
             "type": "string",
-            "description": "city of the Student"
+            "description": "city of the user"
           },
           "state": {
             "type": "string",
-            "description": "state of the Student"
+            "description": "state of the user"
           },
           "country": {
             "type": "string",
-            "description": "country of the Student"
+            "description": "country of the user"
           },
           "zipcode": {
             "type": "number",
-            "description": "zipcode of the Student"
+            "description": "zipcode of the user"
           },
           "isDeleted": {
             "type": "boolean",
@@ -779,8 +779,8 @@
           }
         }
       },
-      "student_update_response": {
-        "title": "Customer Update Response Model",
+      "user_update_response": {
+        "title": "user Update Response Model",
         "additionalProperties": false,
         "type": "object",
         "properties": {
@@ -796,8 +796,8 @@
           }
         }
       },
-      "add_student_request": {
-        "title": "Student Request Model",
+      "add_user_request": {
+        "title": "user Request Model",
         "type": "object",
         "example": {
           "email": "manibharathi@gmail.com",
@@ -805,7 +805,7 @@
           "lastName": "Bharathi",
           "password": "password@123",
           "department": "CSE",
-          "studentId": "STUDENT01",
+          "userId": "user01",
           "contact": 9876543210,
           "bloodGroup": "O positive",
           "dateOfBirth": "01-06-2002",
@@ -821,59 +821,59 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "email of the Student"
+            "description": "email of the user"
           },
           "firstName": {
             "type": "string",
-            "description": "firstName of the Student"
+            "description": "firstName of the user"
           },
           "lastName": {
             "type": "string",
-            "description": "lastName of the Student"
+            "description": "lastName of the user"
           },
           "password": {
             "type": "string",
-            "description": "password of the Student"
+            "description": "password of the user"
           },
-          "studentId": {
+          "userId": {
             "type": "string",
-            "description": "of the Student"
+            "description": "of the user"
           },
           "contact": {
             "type": "number",
-            "description": "phoneNo of the Student"
+            "description": "phoneNo of the user"
           },
           "bloodGroup": {
             "type": "string",
-            "description": "BloodGroup of the Student"
+            "description": "BloodGroup of the user"
           },
           "dateOfBirth": {
             "type": "string",
-            "description": "dateOfBirth of the Student"
+            "description": "dateOfBirth of the user"
           },
           "gender": {
             "type": "string",
-            "description": "gender of the Student"
+            "description": "gender of the user"
           },
           "address": {
             "type": "string",
-            "description": "address of the Student"
+            "description": "address of the user"
           },
           "city": {
             "type": "string",
-            "description": "city of the Student"
+            "description": "city of the user"
           },
           "state": {
             "type": "string",
-            "description": "state of the Student"
+            "description": "state of the user"
           },
           "country": {
             "type": "string",
-            "description": "country of the Student"
+            "description": "country of the user"
           },
           "zipcode": {
             "type": "number",
-            "description": "zipcode of the Student"
+            "description": "zipcode of the user"
           },
           "isDeleted": {
             "type": "boolean",
@@ -881,8 +881,8 @@
           }
         }
       },
-      "add_student_response": {
-        "title": "Student Response Model",
+      "add_user_response": {
+        "title": "user Response Model",
         "additionalProperties": false,
         "type": "object",
         "properties": {
@@ -900,7 +900,7 @@
           }
         }
       },
-      "student_login_request": {
+      "user_login_request": {
         "type": "object",
         "title": "Login Request Model",
         "additionalProperties": false,
@@ -917,13 +917,13 @@
             "type": "string",
             "minLength": 5,
             "maxLength": 120,
-            "description": "Email of the student"
+            "description": "Email of the user"
           },
           "password": {
             "type": "string",
             "minLength": 4,
             "maxLength": 16,
-            "description": "Password defined by the student"
+            "description": "Password defined by the user"
           }
         }
       },
@@ -955,8 +955,8 @@
           }
         }
       },
-      "student_list_get_response": {
-        "title": "Student List Response Model",
+      "user_list_get_response": {
+        "title": "user List Response Model",
         "additionalProperties": false,
         "type": "object",
         "properties": {
@@ -970,7 +970,7 @@
           },
           "data": {
             "type": "array",
-            "description": "List of Students",
+            "description": "List of users",
             "items": {
               "type": "object",
               "additionalProperties": false,
@@ -1026,11 +1026,11 @@
           }
         }
       },
-      "student_account_delete_success_response": {
-        "title": "Delete Student Account Response Model",
+      "user_account_delete_success_response": {
+        "title": "Delete user Account Response Model",
         "type": "object",
         "additionalProperties": false,
-        "description": "This schema defines the request to delete Student account",
+        "description": "This schema defines the request to delete user account",
         "properties": {
           "success": {
             "type": "boolean"

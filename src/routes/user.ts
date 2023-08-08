@@ -1,17 +1,17 @@
 import express from 'express';
 const   Router = express.Router();
 import {validationAuthenticator } from "../middlewares"
-import studentRegister from '../controllers/student/register/post'
-import studentLogin from '../controllers/student/login/post'
-import getStudent from '../controllers/student/get/get'
-import updateStudent from '../controllers/student/update/put'
-import deleteStudent from '../controllers/student/delete/delete'
+import userRegister from '../controllers/user/register'
+import userLogin from '../controllers/user/login'
+import getUser from '../controllers/user/get'
+import updateUser from '../controllers/user/put'
+import deleteUser from '../controllers/user/delete'
 
-Router.get('/getStudent' ,validationAuthenticator(), getStudent())
-Router.post('/studentRegister' , studentRegister())
-Router.post('/studentLogin' , studentLogin())
-Router.put('/updateStudent/:_id', updateStudent())
-Router.delete('/deleteStudent/:_id', deleteStudent())
+Router.get('/getUser' ,validationAuthenticator(), getUser())
+Router.post('/userRegister' , userRegister())
+Router.post('/userLogin' , userLogin())
+Router.put('/updateUser/:_id', updateUser())
+Router.delete('/deleteUser/:_id', deleteUser())
 
 
 export default Router;

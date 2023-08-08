@@ -1,15 +1,15 @@
 paths:
-    /student/login:
+    /user/login:
         post:
             tags:
-                - Student
-            summary: Student Login via E-mail
-            description: This request is used to Student login
+                - user
+            summary: user Login via E-mail
+            description: This request is used to user login
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/student_login_request"
+                            $ref: "#/components/schemas/user_login_request"
                 required: true
             responses:
                 "200":
@@ -55,18 +55,18 @@ paths:
                                 displayMessage: Too many failed login attempts
                                 errorMessage: Too many failed login attempts
                 "404":
-                    description: Student not found
+                    description: user not found
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/default_error_response"
                             example:
                                 statusCode: 404
-                                errorMessage: Customer Does Not Exist
-                                displayMessage: Customer not found
+                                errorMessage: user Does Not Exist
+                                displayMessage: user not found
 components:
     schemas:
-        student_login_request:
+        user_login_request:
             type: object
             title: Login Request Model
             additionalProperties: false
@@ -81,12 +81,12 @@ components:
                     type: string
                     minLength: 5
                     maxLength: 120
-                    description: Email of the student
+                    description: Email of the user
                 password:
                     type: string
                     minLength: 4
                     maxLength: 16
-                    description: Password defined by the student
+                    description: Password defined by the user
         login_response_success:
             type: object
             title: Login Response Model

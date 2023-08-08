@@ -1,8 +1,8 @@
 
 import { Request, Response, NextFunction } from "@express-types";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import Students from '../../../../models/userModel';
-import { ErrorMessageCode, logger } from "../../../../utils/default";
+import users from '../../../models/userModel';
+import { ErrorMessageCode, logger } from "../../../utils/default";
 
 
 export default () =>
@@ -14,7 +14,7 @@ export default () =>
   
     
       try {
-        const student = await Students.findOneAndUpdate(
+        const user = await users.findOneAndUpdate(
                   {
                     _id: req.params._id,
                   },
@@ -26,17 +26,17 @@ export default () =>
                   { new: true }
                 );
                 
-        if (!student) throw Error(ErrorMessageCode.STUDENT_NOT_FOUND);
+        if (!user) throw Error(ErrorMessageCode.USER_NOT_FOUND);
   
         const resp: ResponseBody = {
           success: true,
           statusCode: 200,
-          successMessage: "student Account  Deleted Successfully",
+          successMessage: "user Account  Deleted Successfully",
         };
         res.status(200).json(resp);
       } catch (err) {
         next(err);
-        logger.error("Error while deleting student account.", err);
+        logger.error("Error while deleting user account.", err);
       }
   }
   

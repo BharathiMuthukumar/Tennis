@@ -1,5 +1,5 @@
 
-import { ResponseBody } from "../../controllers/student/login/post/types"
+import { ResponseBody } from "../../controllers/user/login/types"
 
 
 import { HydratedDocument } from "mongoose";

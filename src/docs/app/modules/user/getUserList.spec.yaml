@@ -1,19 +1,19 @@
 paths:
-    /student/get:
+    /user/get:
         get:
-            summary: Get Student List
-            description: This request is used to get Student List.
+            summary: Get user List
+            description: This request is used to get user List.
             security:
                 - BearerAuthentication: []
             tags:
-                - Student
+                - user
             responses:
                 200:
                     description: 200 response
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/student_list_get_response"
+                                $ref: "#/components/schemas/user_list_get_response"
                 400:
                     description: Invalid Request Body
                     content:
@@ -35,15 +35,15 @@ paths:
                                 displayMessage: Forbidden
                                 errorMessage: Forbidden
                 404:
-                    description: Student Not Found
+                    description: user Not Found
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/default_error_response"
                             example:
                                 statusCode: 404
-                                displayMessage: Student Not Found
-                                errorMessage: Student Not Found
+                                displayMessage: user Not Found
+                                errorMessage: user Not Found
                 401:
                     description: Invalid Authorization
                     content:
@@ -74,8 +74,8 @@ paths:
                                 $ref: "#/components/schemas/default_error_response"
 components:
     schemas:
-        student_list_get_response:
-            title: Student List Response Model
+        user_list_get_response:
+            title: user List Response Model
             additionalProperties: false
             type: object
             properties:
@@ -87,7 +87,7 @@ components:
                     description: Success Status Code
                 data:
                     type: array
-                    description: List of Students
+                    description: List of users
                     items:
                         type: object
                         additionalProperties: false

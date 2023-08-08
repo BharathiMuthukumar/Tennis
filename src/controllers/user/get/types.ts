@@ -19,7 +19,7 @@ export interface ResponseBody {
    */
   statusCode?: number;
   /**
-   * List of Students
+   * List of users
    */
   data?: {
     _id?: string;

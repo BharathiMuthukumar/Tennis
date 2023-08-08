@@ -1,8 +1,8 @@
 paths:
-    /student/update:
+    /user/update:
         put:
-            summary: Update Student
-            description: This request is used to update a Student.
+            summary: Update user
+            description: This request is used to update a user.
             security:
                 - BearerAuthentication: []
             parameters:
@@ -15,16 +15,16 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/student_update_request"
+                            $ref: "#/components/schemas/user_update_request"
             tags:
-                - student
+                - user
             responses:
                 200:
                     description: 200 response
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/student_update_response"
+                                $ref: "#/components/schemas/user_update_response"
                 400:
                     description: Invalid Request Body
                     content:
@@ -46,15 +46,15 @@ paths:
                                 displayMessage: Forbidden
                                 errorMessage: Forbidden
                 404:
-                    description: student Not Found
+                    description: user Not Found
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/default_error_response"
                             example:
                                 statusCode: 404
-                                displayMessage: student Not Found
-                                errorMessage: student Not Found
+                                displayMessage: user Not Found
+                                errorMessage: user Not Found
                 401:
                     description: Invalid Authorization
                     content:
@@ -78,15 +78,15 @@ paths:
                                         displayMessage: Invalid Token
                                         errorMessage: Invalid Token
                 409:
-                    description: student Already Exsist
+                    description: user Already Exsist
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/default_error_response"
                             example:
                                 statusCode: 403
-                                displayMessage: student Already Exsist
-                                errorMessage: student Already Exsist
+                                displayMessage: user Already Exsist
+                                errorMessage: user Already Exsist
                 5XX:
                     description: Any other response other than success response
                     content:
@@ -95,15 +95,13 @@ paths:
                                 $ref: "#/components/schemas/default_error_response"
 components:
     schemas:
-        student_update_request:
-            title: Customer Update Request Model
+        user_update_request:
+            title: user Update Request Model
             example:
                 email: manibharathi@gmail.com
                 firstName: Mani
                 lastName: Bharathi
                 password: password@123
-                department: CSE
-                studentId: STUDENT01
                 contact: 9876543210
                 bloodGroup: O positive
                 dateOfBirth: 01-06-2002
@@ -119,51 +117,48 @@ components:
             properties:
                 email:
                     type: string
-                    description: email of the Student
+                    description: email of the user
                 firstName:
                     type: string
-                    description: firstName of the Student
+                    description: firstName of the user
                 lastName:
                     type: string
-                    description: lastName of the Student
+                    description: lastName of the user
                 password:
                     type: string
-                    description: password of the Student
-                studentId:
-                    type: string
-                    description:  of the Student    
+                    description: password of the user
                 contact:
                     type: number
-                    description: phoneNo of the Student
+                    description: phoneNo of the user
                 bloodGroup:
                     type: string
-                    description: BloodGroup of the Student
+                    description: BloodGroup of the user
                 dateOfBirth:
                     type: string
-                    description: dateOfBirth of the Student
+                    description: dateOfBirth of the user
                 gender:
                     type: string
-                    description: gender of the Student
+                    description: gender of the user
                 address:
                     type: string
-                    description: address of the Student
+                    description: address of the user
                 city:
                     type: string
-                    description: city of the Student
+                    description: city of the user
                 state:
                     type: string
-                    description: state of the Student  
+                    description: state of the user  
                 country:
                     type: string
-                    description: country of the Student 
+                    description: country of the user 
                 zipcode:
                     type: number
-                    description: zipcode of the Student               
+                    description: zipcode of the user               
                 isDeleted:
                     type: boolean
                     description: delete status of the account    
-        student_update_response:
-            title: Customer Update Response Model
+        user_update_response:
+            title: user Update Response Model
             additionalProperties: false
             type: object
             properties:

@@ -1,22 +1,22 @@
 paths:
-    /student/register:
+    /user/register:
         post:
-            summary: Register student
-            description: This request is used to register a new student
+            summary: Register user
+            description: This request is used to register a new user
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/add_student_request"
+                            $ref: "#/components/schemas/add_user_request"
             tags:
-                - Student
+                - user
             responses:
                 201:
                     description: 201 response
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/add_student_response"
+                                $ref: "#/components/schemas/add_user_response"
                 400:
                     description: Invalid Request Body
                     content:
@@ -38,15 +38,15 @@ paths:
                                 displayMessage: Forbidden
                                 errorMessage: Forbidden
                 404:
-                    description: Student Not Found
+                    description: user Not Found
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/default_error_response"
                             example:
                                 statusCode: 404
-                                displayMessage: Student Not Found
-                                errorMessage: Student Not Found
+                                displayMessage: user Not Found
+                                errorMessage: user Not Found
                 401:
                     description: Invalid Authorization
                     content:
@@ -70,15 +70,15 @@ paths:
                                         displayMessage: Invalid Token
                                         errorMessage: Invalid Token
                 409:
-                    description: Student Already Exists
+                    description: user Already Exists
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/default_error_response"
                             example:
                                 statusCode: 409
-                                displayMessage: Student Already Exists
-                                errorMessage: Student Already Exists
+                                displayMessage: user Already Exists
+                                errorMessage: user Already Exists
                 5XX:
                     description: Any other response other than success response
                     content:
@@ -87,8 +87,8 @@ paths:
                                 $ref: "#/components/schemas/default_error_response"
 components:
     schemas:
-        add_student_request:
-            title: Student Request Model
+        add_user_request:
+            title: user Request Model
             type: object
             example:
                 email: manibharathi@gmail.com
@@ -96,7 +96,7 @@ components:
                 lastName: Bharathi
                 password: password@123
                 department: CSE
-                studentId: STUDENT01
+                userId: user01
                 contact: 9876543210
                 bloodGroup: O positive
                 dateOfBirth: 01-06-2002
@@ -111,51 +111,51 @@ components:
             properties:
                 email:
                     type: string
-                    description: email of the Student
+                    description: email of the user
                 firstName:
                     type: string
-                    description: firstName of the Student
+                    description: firstName of the user
                 lastName:
                     type: string
-                    description: lastName of the Student
+                    description: lastName of the user
                 password:
                     type: string
-                    description: password of the Student
-                studentId:
+                    description: password of the user
+                userId:
                     type: string
-                    description:  of the Student    
+                    description:  of the user    
                 contact:
                     type: number
-                    description: phoneNo of the Student
+                    description: phoneNo of the user
                 bloodGroup:
                     type: string
-                    description: BloodGroup of the Student
+                    description: BloodGroup of the user
                 dateOfBirth:
                     type: string
-                    description: dateOfBirth of the Student
+                    description: dateOfBirth of the user
                 gender:
                     type: string
-                    description: gender of the Student
+                    description: gender of the user
                 address:
                     type: string
-                    description: address of the Student
+                    description: address of the user
                 city:
                     type: string
-                    description: city of the Student
+                    description: city of the user
                 state:
                     type: string
-                    description: state of the Student  
+                    description: state of the user  
                 country:
                     type: string
-                    description: country of the Student 
+                    description: country of the user 
                 zipcode:
                     type: number
-                    description: zipcode of the Student               
+                    description: zipcode of the user               
                 isDeleted:
                     type: boolean
                     description: delete status of the account
-        add_student_response:
-            title: Student Response Model
+        add_user_response:
+            title: user Response Model
             additionalProperties: false
             type: object
             properties:

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import Students from '../../../../models/userModel';
+import users from '../../../models/userModel';
 
-import { ErrorMessageCode, logger } from "../../../../utils/default";
+import { ErrorMessageCode, logger } from "../../../utils/default";
 
 
 export default () =>
@@ -17,20 +17,20 @@ export default () =>
             isDeleted: false,
         };
 
-        let studentList = await Students.find(query)
-            let result = JSON.stringify(studentList);
+        let userList = await users.find(query)
+            let result = JSON.stringify(userList);
 			console.log("res", result);
 			return res.json({
 				success: true,
 				statusCode: 200,
 				data: JSON.parse(result),
-				successMessage: "studentList Retrieved Successfully",
+				successMessage: "userList Retrieved Successfully",
 			});
         }
     
     catch (err) {
         next(err);
-        logger.error("Error while getting Customer list.", err);
+        logger.error("Error while getting user list.", err);
     }
 }
 

@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import Students from '../../../../models/userModel';
+import users from '../../../models/userModel';
 import bcrypt from "bcryptjs";
-import { ErrorMessageCode, logger } from "../../../../utils/default";
+import { ErrorMessageCode, logger } from "../../../utils/default";
 import { HydratedDocument } from "mongoose";
-import { generateCustomerLoginResponse} from "../../../../helpers/auth/LoginHelper";
+import { generateUserLoginResponse} from "../../../helpers/auth/LoginHelper";
 export default  () =>
 async (
   req: Request<RequestBody>,
@@ -12,28 +12,28 @@ async (
   next: NextFunction,
 ) => {
   try{
-    console.log("enter student login");
-    let student: any;
-            let student1: HydratedDocument<any>
-            student = await Students.findOne({ email: req.body.email,
+    console.log("enter user login");
+    let user: any;
+            let user1: HydratedDocument<any>
+            user = await users.findOne({ email: req.body.email,
               isDeleted: false, });
-          	if (!student) throw new Error(ErrorMessageCode.STUDENT_NOT_FOUND);
+          	if (!user) throw new Error(ErrorMessageCode.USER_NOT_FOUND);
 	
-            if(student){
+            if(user){
 
-              const isValid = await bcrypt.compare(req.body.password, student.password);
+              const isValid = await bcrypt.compare(req.body.password, user.password);
                     console.log("isValid,",isValid)
               if (!isValid) throw new Error(ErrorMessageCode.INCORRECT_PASSWORD);
-              student1 = {
-                _id : student._id .toString(),
-                email: student.email,
-                firstName: student.firstName,
-                lastName: student.lastName
+              user1 = {
+                _id : user._id .toString(),
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName
               }
-              const response = await generateCustomerLoginResponse(student1              
+              const response = await generateUserLoginResponse(user1              
                 );
                       console.log(response);
-                logger.debug(` ${student.email} logged in.`);
+                logger.debug(` ${user.email} logged in.`);
                 return res.status(response.statusCode).json(response);
               }
             }catch (err) {

@@ -12,7 +12,7 @@ export interface PathParams {
 // Response Body
 
 /**
- * This schema defines the request to delete Student account
+ * This schema defines the request to delete user account
  */
 export interface ResponseBody {
   success?: boolean;

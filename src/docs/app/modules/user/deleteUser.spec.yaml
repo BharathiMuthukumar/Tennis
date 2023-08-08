@@ -1,13 +1,13 @@
 paths:
-    /student/delete:
+    /user/delete:
         delete:
             tags:
-                - Student
-            summary: Delete Student account
+                - user
+            summary: Delete user account
             security:
                 - BearerAuthentication: []
             description:
-                This Request is for Deleting the Student account
+                This Request is for Deleting the user account
             parameters:
                 - name: _id
                   in: path
@@ -20,7 +20,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/student_account_delete_success_response'
+                                $ref: '#/components/schemas/user_account_delete_success_response'
                 400:
                     description: Invalid Request Query
                     content:
@@ -42,15 +42,15 @@ paths:
                                 displayMessage: Forbidden
                                 errorMessage: Forbidden
                 404:
-                    description: Student Not Found
+                    description: user Not Found
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/default_error_response'
                             example:
                                 statusCode: 404
-                                displayMessage: Student Not Found
-                                errorMessage: Student Not Found
+                                displayMessage: user Not Found
+                                errorMessage: user Not Found
                 401:
                     description: Invalid Authorization
                     content:
@@ -81,11 +81,11 @@ paths:
                                 $ref: '#/components/schemas/default_error_response'
 components:
     schemas:
-        student_account_delete_success_response:
-            title: Delete Student Account Response Model
+        user_account_delete_success_response:
+            title: Delete user Account Response Model
             type: object
             additionalProperties: false
-            description: This schema defines the request to delete Student account
+            description: This schema defines the request to delete user account
             properties:
                 success:
                     type: boolean
