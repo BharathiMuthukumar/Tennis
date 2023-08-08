@@ -4,7 +4,7 @@ import {
 } from "express";
 import { Request as ExpressRequest } from "express";
 import {
-	JwtStudentLoginType
+	JwtUserLoginType
 } from "../helpers/jwt";
 import { ErrorMessageCode } from "../utils/default/errormessagecode";
 export type Request<R, Q, P> = {

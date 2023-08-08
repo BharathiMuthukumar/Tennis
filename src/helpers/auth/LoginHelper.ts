@@ -5,19 +5,19 @@ import { ResponseBody } from "../../controllers/student/login/post/types"
 import { HydratedDocument } from "mongoose";
 
 
-import { IStudents } from "../../models/studentModel";
-import { generateForCustomer } from "../jwt";
+import { Iusers } from "../../models/userModel";
+import { generateForUser } from "../jwt";
 
 
 
-export async function generateCustomerLoginResponse(
+export async function generateUserLoginResponse(
 
-	student: HydratedDocument<IStudents> ,
+	user: HydratedDocument<Iusers> ,
 	
 ): Promise<ResponseBody > {
 	console.log("Helper enter")
 
-		const token = generateForCustomer(student);
+		const token = generateForUser(user);
 	  console.log(token);
 	// response
 	const response: ResponseBody = {

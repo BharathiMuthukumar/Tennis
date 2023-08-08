@@ -2,7 +2,7 @@ import { ErrorMessageCode, logger } from "../utils/default";
 import models from "../models";
 import { Types } from "mongoose";
 
-import { verifyAsyncCustomer } from "../helpers/jwt";
+import { verifyAsyncUser } from "../helpers/jwt";
 
 export default () => async (req, res, next) =>{
 
@@ -10,15 +10,15 @@ export default () => async (req, res, next) =>{
 		const accessToken = req.headers.authorization;
         if (accessToken) {
         try{
-            let loggedInStudent: any;
-                console.log("enter customer authenticator")
-				const decoded = await verifyAsyncCustomer(
+            let loggedInUser: any;
+                console.log("enter user authenticator")
+				const decoded = await verifyAsyncUser(
 					accessToken
 				);
-				req.student = decoded;
+				req.user = decoded;
                 console.log("decoded",decoded)
 				if (decoded.type === "access-token") {		
-                    loggedInStudent = await models.Students
+                    loggedInUser = await models.Users
 							.findOne({
 								_id: new Types.ObjectId(decoded._id),
 							})

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Schema, model, Types } from "mongoose";
-export interface IStudents {
+export interface Iusers {
 
     _id?: Types.ObjectId;
     save: any;
@@ -8,12 +8,10 @@ export interface IStudents {
 	lastName?: string;
     email?: string;
 	password?: string;
-    studentId?: string;
     dateOfBirth?: Date;
     gender?: string;
     bloodGroup?: string;
     contact?: number;
-    department?: string;
     address?: string;
     city?: string;
     state?: string;
@@ -23,7 +21,7 @@ export interface IStudents {
 
 
 }
-const studentSchema =new Schema<IStudents>({
+const userSchema =new Schema<Iusers>({
     firstName: {
         require : true,
         type: String
@@ -45,11 +43,6 @@ const studentSchema =new Schema<IStudents>({
         require : true,
         type: Number
     },
-    studentId : {
-        type: String,
-        unique : true,
-        require : true,
-    },
     dateOfBirth:{
         type: Date,
         require : true,
@@ -60,10 +53,6 @@ const studentSchema =new Schema<IStudents>({
         type: String
     },
     bloodGroup:{
-        require : true,
-        type: String
-    },
-    department:{
         require : true,
         type: String
     },
@@ -94,4 +83,4 @@ const studentSchema =new Schema<IStudents>({
 }
 )
 
-export default model<IStudents>('StudentInfo', studentSchema)
+export default model<Iusers>('UserInfo', userSchema)

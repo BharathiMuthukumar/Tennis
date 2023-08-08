@@ -1,7 +1,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import Students,{IStudents} from '../../../../models/studentModel';
+import Students,{IStudents} from '../../../../models/userModel';
 import bcrypt from "bcryptjs";
 import { ErrorMessageCode, logger } from "../../../../utils/default";
 export default  () =>

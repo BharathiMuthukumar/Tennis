@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "@express-types";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import Students from '../../../../models/studentModel';
+import Students from '../../../../models/userModel';
 import { ErrorMessageCode, logger } from "../../../../utils/default";
 
 export default () =>

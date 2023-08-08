@@ -1,4 +1,4 @@
-import Students from "./studentModel";
+import Users from "./userModel";
 export default {
-    Students
+    Users
 }

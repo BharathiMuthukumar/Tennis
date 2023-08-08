@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import Students from '../../../../models/studentModel';
+import Students from '../../../../models/userModel';
 import bcrypt from "bcryptjs";
 import { ErrorMessageCode, logger } from "../../../../utils/default";
 import { HydratedDocument } from "mongoose";
