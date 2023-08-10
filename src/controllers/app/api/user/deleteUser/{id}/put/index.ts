@@ -16,7 +16,8 @@ export default () =>
       try {
         const user = await users.findOneAndUpdate(
                   {
-                    _id: req.params._id,
+                    _id: req.openapi.pathParams.id
+                    ,
                   },
                   {
                     $set: {

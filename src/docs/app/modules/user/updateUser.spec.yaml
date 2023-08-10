@@ -1,12 +1,12 @@
 paths:
-    /app/api/user/updateUser:
+    /app/api/user/updateUser/{id}:
         put:
             summary: Update user
             description: This request is used to update a user.
             security:
                 - BearerAuthentication: []
             parameters:
-                - name: _id
+                - name: id
                   in: path
                   required: true
                   schema:

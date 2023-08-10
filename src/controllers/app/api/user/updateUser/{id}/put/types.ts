@@ -64,7 +64,7 @@ export interface QueryParams {}
 // PathParams Parameter
 
 export interface PathParams {
-  _id?: string;
+  id?: string;
 }
 // Response Body
 

@@ -10,11 +10,12 @@ export default () =>
 		next: NextFunction,
 	) => {
     try {
+      console.log("enter update user")
       console.log("req.params",req.params)
       // console.log("req.params2",req.openapi.pathParams)
 
       const user = await users.findOne({
-				_id: req.params._id
+				_id: req.openapi.pathParams.id
 				
 			});
       console.log("user = ", user );
