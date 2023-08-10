@@ -37,3 +37,33 @@
 2023-08-09 18:44:03 info: app Server listening at port 3001 
 2023-08-09 18:49:14 info: app Server listening at port 3001 
 2023-08-09 18:49:14 info: Connected to MongoDB 
+2023-08-10 12:26:58 info: app Server listening at port 3001 
+2023-08-10 12:26:58 info: Connected to MongoDB 
+2023-08-10 12:37:51 error: Error while registering user. USER_ALREADY_EXISTS 
+2023-08-10 14:30:08 info: app Server listening at port 3001 
+2023-08-10 14:30:08 info: Connected to MongoDB 
+2023-08-10 14:45:34 info: app Server listening at port 3001 
+2023-08-10 14:45:34 info: Connected to MongoDB 
+2023-08-10 14:46:13 info: app Server listening at port 3001 
+2023-08-10 14:46:13 info: Connected to MongoDB 
+2023-08-10 14:46:21 info: app Server listening at port 3001 
+2023-08-10 14:46:21 info: Connected to MongoDB 
+2023-08-10 14:51:15 info: app Server listening at port 3001 
+2023-08-10 14:51:15 info: Connected to MongoDB 
+2023-08-10 14:53:12 info: app Server listening at port 3001 
+2023-08-10 14:53:12 info: Connected to MongoDB 
+2023-08-10 14:53:14 error: Error while updating user. E11000 duplicate key error collection: tennis.userinfos index: email_1 dup key: { email: "maddy@gmail.com" } 
+2023-08-10 14:54:15 error: Error while updating user. E11000 duplicate key error collection: tennis.userinfos index: email_1 dup key: { email: "maddy@gmail.com" } 
+2023-08-10 14:55:18 info: app Server listening at port 3001 
+2023-08-10 14:55:18 info: Connected to MongoDB 
+2023-08-10 14:55:27 info: app Server listening at port 3001 
+2023-08-10 14:55:27 info: Connected to MongoDB 
+2023-08-10 14:55:32 info: app Server listening at port 3001 
+2023-08-10 14:55:32 info: Connected to MongoDB 
+2023-08-10 14:56:03 info: app Server listening at port 3001 
+2023-08-10 14:56:03 info: Connected to MongoDB 
+2023-08-10 14:56:05 error: Error while updating user. E11000 duplicate key error collection: tennis.userinfos index: email_1 dup key: { email: "maddy@gmail.com" } 
+2023-08-10 14:59:02 error: Error while updating user. E11000 duplicate key error collection: tennis.userinfos index: email_1 dup key: { email: "maddy@gmail.com" } 
+2023-08-10 14:59:10 error: Error while updating user. E11000 duplicate key error collection: tennis.userinfos index: email_1 dup key: { email: "maddy@gmail.com" } 
+2023-08-10 14:59:47 info: app Server listening at port 3001 
+2023-08-10 14:59:47 info: Connected to MongoDB 

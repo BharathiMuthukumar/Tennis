@@ -14,7 +14,7 @@ export default () =>
       // console.log("req.params2",req.openapi.pathParams)
 
       const user = await users.findOne({
-				_id: req.params._id
+				_id: req.params.id
 				
 			});
       console.log("user = ", user );

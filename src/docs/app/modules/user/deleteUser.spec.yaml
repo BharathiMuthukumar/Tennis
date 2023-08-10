@@ -1,5 +1,5 @@
 paths:
-    /app/api/user/deleteUser:
+    /app/api/user/deleteUser/{id}:
         delete:
             tags:
                 - user
@@ -9,7 +9,7 @@ paths:
             description:
                 This Request is for Deleting the user account
             parameters:
-                - name: _id
+                - name: id
                   in: path
                   required: true
                   schema:

@@ -8,7 +8,7 @@ info: {title: Tennis Application API Server, description: '<i>The convention ind
 servers:
 - {url: 'http://localhost:3001', description: Local Development Sever}
 paths:
-  /app/api/user/deleteUser:
+  /app/api/user/deleteUser/{id}:
     delete:
       tags: [user]
       summary: Delete user account
@@ -16,7 +16,7 @@ paths:
       - BearerAuthentication: []
       description: This Request is for Deleting the user account
       parameters:
-      - name: _id
+      - name: id
         in: path
         required: true
         schema: {type: string}
@@ -117,14 +117,14 @@ paths:
           content:
             application/json:
               schema: {$ref: '#/components/schemas/default_error_response'}
-  /app/api/user/updateUser:
+  /app/api/user/updateUser/{id}:
     put:
       summary: Update user
       description: This request is used to update a user.
       security:
       - BearerAuthentication: []
       parameters:
-      - name: _id
+      - name: id
         in: path
         required: true
         schema: {type: string}

@@ -4,14 +4,14 @@ import {validationAuthenticator } from "@middlewares"
 import userRegister from '@src/controllers/app/api/user/userRegister/post'
 import userLogin from '@src/controllers/app/api/user/userLogin/post'
 import getUser from '@src/controllers/app/api/user/getUser/get'
-import updateUser from '@src/controllers/app/api/user/updateUser/put'
+import updateUser from '@src/controllers/app/api/user/updateUser/{id}/put'
 import deleteUser from '@src/controllers/app/api/user/deleteUser/delete'
 
 Router.get('/getUser' ,validationAuthenticator(), getUser())
 Router.post('/userRegister' , userRegister())
 Router.post('/userLogin' , userLogin())
-Router.put('/updateUser/:_id', updateUser())
-Router.delete('/deleteUser/:_id', deleteUser())
+Router.put('/updateUser/:id', updateUser())
+Router.delete('/deleteUser/:id', deleteUser())
 
 
 export default Router;
