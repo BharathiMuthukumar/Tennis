@@ -5,7 +5,7 @@ import   mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 import  userRoutes from "./src/routes/user";
-app.use(express.json());
+app.use(express.json());    
 mongoose.connect(process.env.URI)
 
 .then(()=>{
