@@ -1,4 +1,4 @@
-import { ResponseBody } from "../../controllers/user/login/types"
+import { ResponseBody } from "@src/controllers/app/api/user/userLogin/post/types";
 import { HydratedDocument } from "mongoose";
 import { Iusers } from "../../models/userModel";
 import { generateForUser } from "../jwt";
