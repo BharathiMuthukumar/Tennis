@@ -13,7 +13,7 @@
   ],
   "paths": {
     "/app/api/user/deleteUser/{id}": {
-      "delete": {
+      "put": {
         "tags": [
           "user"
         ],

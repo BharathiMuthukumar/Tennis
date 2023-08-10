@@ -9,7 +9,7 @@ servers:
 - {url: 'http://localhost:3001', description: Local Development Sever}
 paths:
   /app/api/user/deleteUser/{id}:
-    delete:
+    put:
       tags: [user]
       summary: Delete user account
       security:
