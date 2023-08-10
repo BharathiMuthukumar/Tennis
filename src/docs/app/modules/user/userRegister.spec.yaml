@@ -1,5 +1,5 @@
 paths:
-    /user/register:
+    /app/api/user/userRegister:
         post:
             summary: Register user
             description: This request is used to register a new user
@@ -95,8 +95,6 @@ components:
                 firstName: Mani
                 lastName: Bharathi
                 password: password@123
-                department: CSE
-                userId: user01
                 contact: 9876543210
                 bloodGroup: O positive
                 dateOfBirth: 01-06-2002
@@ -121,9 +119,6 @@ components:
                 password:
                     type: string
                     description: password of the user
-                userId:
-                    type: string
-                    description:  of the user    
                 contact:
                     type: number
                     description: phoneNo of the user

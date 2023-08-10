@@ -1,5 +1,5 @@
 paths:
-    /user/login:
+    /app/api/user/userLogin:
         post:
             tags:
                 - user

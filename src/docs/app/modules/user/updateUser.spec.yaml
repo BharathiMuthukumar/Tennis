@@ -1,5 +1,5 @@
 paths:
-    /user/update:
+    /app/api/user/updateUser:
         put:
             summary: Update user
             description: This request is used to update a user.
