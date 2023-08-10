@@ -1,0 +1,73 @@
+{
+    "sourceMaps": "inline",
+    "presets": [
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ],
+        "@babel/preset-typescript"
+    ],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "."
+                ],
+                "extenstions": [
+                    ".ts",
+                    ".json"
+                ],
+                "alias": {
+                    "@express-types": "./src/types/index.js",
+                    "@middlewares": "./src/middlewares/index.js",
+                    "@models": "./src/models/index.js",
+                    "@helpers": "./src/helpers",
+                    "@logger": "./src/utils/logger.js",
+                    "@src": "./src"
+                }
+            }
+        ],
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        [
+            "@babel/plugin-proposal-class-properties",
+            {
+                "loose": true
+            }
+        ],
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-runtime",
+        "transform-remove-console",
+        [
+            "minify-dead-code-elimination"
+        ],
+        "babel-plugin-loop-optimizer",
+        [
+            "minify-mangle-names"
+        ],
+        "minify-constant-folding",
+        "transform-inline-consecutive-adds",
+        "minify-numeric-literals",
+        "transform-minify-booleans",
+        "minify-guarded-expressions",
+        "babel-plugin-transform-remove-undefined",
+        "minify-simplify",
+        "transform-simplify-comparison-operators",
+        "closure-elimination",
+        [
+            "inline-dotenv",
+            {
+                "path": "./.env"
+            }
+        ]
+    ]
+}

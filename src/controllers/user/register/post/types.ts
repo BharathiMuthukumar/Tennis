@@ -18,10 +18,6 @@ export interface RequestBody {
    */
   password?: string;
   /**
-   * of the user
-   */
-  userId?: string;
-  /**
    * phoneNo of the user
    */
   contact?: number;
@@ -67,13 +63,17 @@ export interface RequestBody {
 export interface QueryParams {}
 // PathParams Parameter
 
-export interface PathParams {
-  _id?: string;
-}
+export interface PathParams {}
 // Response Body
 
 export interface ResponseBody {
+  /**
+   * Success Status
+   */
   success?: boolean;
+  /**
+   * Success Status Code
+   */
   statusCode?: number;
   /**
    * Success Message of the request

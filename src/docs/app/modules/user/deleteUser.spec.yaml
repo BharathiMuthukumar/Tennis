@@ -1,5 +1,5 @@
 paths:
-    /user/delete:
+    /app/api/user/deleteUser:
         delete:
             tags:
                 - user

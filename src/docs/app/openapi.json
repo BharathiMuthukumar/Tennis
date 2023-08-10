@@ -1,30 +1,246 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "JetSynthesis Application API Server",
+    "title": "Tennis Application API Server",
     "description": "<i>The convention industry has forever changed. However, the need for us to come together as a community has never been greater. There will never be a substitute for human contact, but giving people an alternative method to staying connected is our mission. Why sacrifice if you could do both? </i><p><strong>Download swagger JSON document from <a href=\"/bo/swagger.json\">Click here</a></strong><p>",
     "version": "0.1.0"
   },
   "servers": [
     {
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3001",
       "description": "Local Development Sever"
-    },
-    {
-      "url": "https://jetsynthesys-api-app.augustasoftsol.com",
-      "description": "Hosted Development Sever"
-    },
-    {
-      "url": "https://qa.rightlife.com/api",
-      "description": "Hosted QA Sever"
-    },
-    {
-      "url": "https://stage.rightlife.com/api",
-      "description": "Hosted Stage Sever"
     }
   ],
   "paths": {
-    "/user/update": {
+    "/app/api/user/deleteUser": {
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete user account",
+        "security": [
+          {
+            "BearerAuthentication": []
+          }
+        ],
+        "description": "This Request is for Deleting the user account",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user_account_delete_success_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request Query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 400,
+                  "displayMessage": "Invalid Request Query",
+                  "errorMessage": "Invalid Request Query"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "examples": {
+                  "Unauthorized Access": {
+                    "description": "The Refresh token provided is not authorized",
+                    "value": {
+                      "statusCode": 401,
+                      "displayMessage": "Unauthorized Access",
+                      "errorMessage": "Unauthorized Access"
+                    }
+                  },
+                  "Invalid Token": {
+                    "description": "The Refresh token provided is not valid",
+                    "value": {
+                      "statusCode": 401,
+                      "displayMessage": "Invalid Token",
+                      "errorMessage": "Invalid Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 403,
+                  "displayMessage": "Forbidden",
+                  "errorMessage": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "user Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 404,
+                  "displayMessage": "user Not Found",
+                  "errorMessage": "user Not Found"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Any other response other than success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/api/user/getUser": {
+      "get": {
+        "summary": "Get user List",
+        "description": "This request is used to get user List.",
+        "security": [
+          {
+            "BearerAuthentication": []
+          }
+        ],
+        "tags": [
+          "user"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user_list_get_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request Body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 400,
+                  "displayMessage": "Invalid Request Body",
+                  "errorMessage": "Invalid Request Body"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "examples": {
+                  "Unauthorized Access": {
+                    "description": "The Refresh token provided is not authorized",
+                    "value": {
+                      "statusCode": 401,
+                      "displayMessage": "Unauthorized Access",
+                      "errorMessage": "Unauthorized Access"
+                    }
+                  },
+                  "Invalid Token": {
+                    "description": "The Refresh token provided is not valid",
+                    "value": {
+                      "statusCode": 401,
+                      "displayMessage": "Invalid Token",
+                      "errorMessage": "Invalid Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 403,
+                  "displayMessage": "Forbidden",
+                  "errorMessage": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "user Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 404,
+                  "displayMessage": "user Not Found",
+                  "errorMessage": "user Not Found"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Any other response other than success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/api/user/updateUser": {
       "put": {
         "summary": "Update user",
         "description": "This request is used to update a user.",
@@ -167,7 +383,105 @@
         }
       }
     },
-    "/user/register": {
+    "/app/api/user/userLogin": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user Login via E-mail",
+        "description": "This request is used to user login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_login_request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login_response_success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 400,
+                  "displayMessage": "Invalid Request Body",
+                  "errorMessage": "Invalid Request Body",
+                  "errors": [
+                    {
+                      "path": ".body.password",
+                      "message": "should have required property 'password'",
+                      "errorCode": "required.openapi.validation"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 401,
+                  "errorMessage": "Invalid Password",
+                  "displayMessage": "Password is Incorrect"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "user not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 404,
+                  "errorMessage": "user Does Not Exist",
+                  "displayMessage": "user not found"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many failed login attempts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/default_error_response"
+                },
+                "example": {
+                  "statusCode": 429,
+                  "displayMessage": "Too many failed login attempts",
+                  "errorMessage": "Too many failed login attempts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/api/user/userRegister": {
       "post": {
         "summary": "Register user",
         "description": "This request is used to register a new user",
@@ -294,332 +608,6 @@
           }
         }
       }
-    },
-    "/user/login": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "user Login via E-mail",
-        "description": "This request is used to user login",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/user_login_request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Success response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/login_response_success"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 400,
-                  "displayMessage": "Invalid Request Body",
-                  "errorMessage": "Invalid Request Body",
-                  "errors": [
-                    {
-                      "path": ".body.password",
-                      "message": "should have required property 'password'",
-                      "errorCode": "required.openapi.validation"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid Password",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 401,
-                  "errorMessage": "Invalid Password",
-                  "displayMessage": "Password is Incorrect"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "user not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 404,
-                  "errorMessage": "user Does Not Exist",
-                  "displayMessage": "user not found"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Too many failed login attempts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 429,
-                  "displayMessage": "Too many failed login attempts",
-                  "errorMessage": "Too many failed login attempts"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user/get": {
-      "get": {
-        "summary": "Get user List",
-        "description": "This request is used to get user List.",
-        "security": [
-          {
-            "BearerAuthentication": []
-          }
-        ],
-        "tags": [
-          "user"
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/user_list_get_response"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid Request Body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 400,
-                  "displayMessage": "Invalid Request Body",
-                  "errorMessage": "Invalid Request Body"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid Authorization",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "examples": {
-                  "Unauthorized Access": {
-                    "description": "The Refresh token provided is not authorized",
-                    "value": {
-                      "statusCode": 401,
-                      "displayMessage": "Unauthorized Access",
-                      "errorMessage": "Unauthorized Access"
-                    }
-                  },
-                  "Invalid Token": {
-                    "description": "The Refresh token provided is not valid",
-                    "value": {
-                      "statusCode": 401,
-                      "displayMessage": "Invalid Token",
-                      "errorMessage": "Invalid Token"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 403,
-                  "displayMessage": "Forbidden",
-                  "errorMessage": "Forbidden"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "user Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 404,
-                  "displayMessage": "user Not Found",
-                  "errorMessage": "user Not Found"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Any other response other than success response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user/delete": {
-      "delete": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Delete user account",
-        "security": [
-          {
-            "BearerAuthentication": []
-          }
-        ],
-        "description": "This Request is for Deleting the user account",
-        "parameters": [
-          {
-            "name": "_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/user_account_delete_success_response"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid Request Query",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 400,
-                  "displayMessage": "Invalid Request Query",
-                  "errorMessage": "Invalid Request Query"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid Authorization",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "examples": {
-                  "Unauthorized Access": {
-                    "description": "The Refresh token provided is not authorized",
-                    "value": {
-                      "statusCode": 401,
-                      "displayMessage": "Unauthorized Access",
-                      "errorMessage": "Unauthorized Access"
-                    }
-                  },
-                  "Invalid Token": {
-                    "description": "The Refresh token provided is not valid",
-                    "value": {
-                      "statusCode": 401,
-                      "displayMessage": "Invalid Token",
-                      "errorMessage": "Invalid Token"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 403,
-                  "displayMessage": "Forbidden",
-                  "errorMessage": "Forbidden"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "user Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                },
-                "example": {
-                  "statusCode": 404,
-                  "displayMessage": "user Not Found",
-                  "errorMessage": "user Not Found"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Any other response other than success response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/default_error_response"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -694,95 +682,11 @@
           }
         }
       },
-      "user_update_request": {
-        "title": "user Update Request Model",
-        "example": {
-          "email": "manibharathi@gmail.com",
-          "firstName": "Mani",
-          "lastName": "Bharathi",
-          "password": "password@123",
-          "department": "CSE",
-          "userId": "user01",
-          "contact": 9876543210,
-          "bloodGroup": "O positive",
-          "dateOfBirth": "01-06-2002",
-          "gender": "F",
-          "address": "81/54, jeeva nagar",
-          "city": "Thanjavur",
-          "state": "Tamilnadu",
-          "country": "India",
-          "Zipcode": 614612,
-          "isDeleted": false
-        },
-        "additionalProperties": false,
+      "user_account_delete_success_response": {
+        "title": "Delete user Account Response Model",
         "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "email of the user"
-          },
-          "firstName": {
-            "type": "string",
-            "description": "firstName of the user"
-          },
-          "lastName": {
-            "type": "string",
-            "description": "lastName of the user"
-          },
-          "password": {
-            "type": "string",
-            "description": "password of the user"
-          },
-          "userId": {
-            "type": "string",
-            "description": "of the user"
-          },
-          "contact": {
-            "type": "number",
-            "description": "phoneNo of the user"
-          },
-          "bloodGroup": {
-            "type": "string",
-            "description": "BloodGroup of the user"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "description": "dateOfBirth of the user"
-          },
-          "gender": {
-            "type": "string",
-            "description": "gender of the user"
-          },
-          "address": {
-            "type": "string",
-            "description": "address of the user"
-          },
-          "city": {
-            "type": "string",
-            "description": "city of the user"
-          },
-          "state": {
-            "type": "string",
-            "description": "state of the user"
-          },
-          "country": {
-            "type": "string",
-            "description": "country of the user"
-          },
-          "zipcode": {
-            "type": "number",
-            "description": "zipcode of the user"
-          },
-          "isDeleted": {
-            "type": "boolean",
-            "description": "delete status of the account"
-          }
-        }
-      },
-      "user_update_response": {
-        "title": "user Update Response Model",
         "additionalProperties": false,
-        "type": "object",
+        "description": "This schema defines the request to delete user account",
         "properties": {
           "success": {
             "type": "boolean"
@@ -793,165 +697,6 @@
           "successMessage": {
             "type": "string",
             "description": "Success Message of the request"
-          }
-        }
-      },
-      "add_user_request": {
-        "title": "user Request Model",
-        "type": "object",
-        "example": {
-          "email": "manibharathi@gmail.com",
-          "firstName": "Mani",
-          "lastName": "Bharathi",
-          "password": "password@123",
-          "department": "CSE",
-          "userId": "user01",
-          "contact": 9876543210,
-          "bloodGroup": "O positive",
-          "dateOfBirth": "01-06-2002",
-          "gender": "F",
-          "address": "81/54, jeeva nagar",
-          "city": "Thanjavur",
-          "state": "Tamilnadu",
-          "country": "India",
-          "Zipcode": 614612,
-          "isDeleted": false
-        },
-        "additionalProperties": false,
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "email of the user"
-          },
-          "firstName": {
-            "type": "string",
-            "description": "firstName of the user"
-          },
-          "lastName": {
-            "type": "string",
-            "description": "lastName of the user"
-          },
-          "password": {
-            "type": "string",
-            "description": "password of the user"
-          },
-          "userId": {
-            "type": "string",
-            "description": "of the user"
-          },
-          "contact": {
-            "type": "number",
-            "description": "phoneNo of the user"
-          },
-          "bloodGroup": {
-            "type": "string",
-            "description": "BloodGroup of the user"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "description": "dateOfBirth of the user"
-          },
-          "gender": {
-            "type": "string",
-            "description": "gender of the user"
-          },
-          "address": {
-            "type": "string",
-            "description": "address of the user"
-          },
-          "city": {
-            "type": "string",
-            "description": "city of the user"
-          },
-          "state": {
-            "type": "string",
-            "description": "state of the user"
-          },
-          "country": {
-            "type": "string",
-            "description": "country of the user"
-          },
-          "zipcode": {
-            "type": "number",
-            "description": "zipcode of the user"
-          },
-          "isDeleted": {
-            "type": "boolean",
-            "description": "delete status of the account"
-          }
-        }
-      },
-      "add_user_response": {
-        "title": "user Response Model",
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "description": "Success Status"
-          },
-          "statusCode": {
-            "type": "integer",
-            "description": "Success Status Code"
-          },
-          "successMessage": {
-            "type": "string",
-            "description": "Success Message of the request"
-          }
-        }
-      },
-      "user_login_request": {
-        "type": "object",
-        "title": "Login Request Model",
-        "additionalProperties": false,
-        "example": {
-          "email": "manibharathi@gmail.com",
-          "password": "manibharathi@123"
-        },
-        "required": [
-          "email",
-          "password"
-        ],
-        "properties": {
-          "email": {
-            "type": "string",
-            "minLength": 5,
-            "maxLength": 120,
-            "description": "Email of the user"
-          },
-          "password": {
-            "type": "string",
-            "minLength": 4,
-            "maxLength": 16,
-            "description": "Password defined by the user"
-          }
-        }
-      },
-      "login_response_success": {
-        "type": "object",
-        "title": "Login Response Model",
-        "additionalProperties": false,
-        "example": {
-          "success": true,
-          "statusCode": 200,
-          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg",
-          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg",
-          "role": "user"
-        },
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "statusCode": {
-            "type": "integer"
-          },
-          "accessToken": {
-            "type": "string",
-            "description": "Token used to authenticate other endpoints. Pass 'Authentication' in Header."
-          },
-          "refreshToken": {
-            "type": "string",
-            "description": "Refresh Token used to generate new access token"
           }
         }
       },
@@ -1026,17 +771,248 @@
           }
         }
       },
-      "user_account_delete_success_response": {
-        "title": "Delete user Account Response Model",
-        "type": "object",
+      "user_update_request": {
+        "title": "user Update Request Model",
+        "example": {
+          "email": "manibharathi@gmail.com",
+          "firstName": "Mani",
+          "lastName": "Bharathi",
+          "password": "password@123",
+          "contact": 9876543210,
+          "bloodGroup": "O positive",
+          "dateOfBirth": "01-06-2002",
+          "gender": "F",
+          "address": "81/54, jeeva nagar",
+          "city": "Thanjavur",
+          "state": "Tamilnadu",
+          "country": "India",
+          "Zipcode": 614612,
+          "isDeleted": false
+        },
         "additionalProperties": false,
-        "description": "This schema defines the request to delete user account",
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "email of the user"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "firstName of the user"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "lastName of the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "password of the user"
+          },
+          "contact": {
+            "type": "number",
+            "description": "phoneNo of the user"
+          },
+          "bloodGroup": {
+            "type": "string",
+            "description": "BloodGroup of the user"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "dateOfBirth of the user"
+          },
+          "gender": {
+            "type": "string",
+            "description": "gender of the user"
+          },
+          "address": {
+            "type": "string",
+            "description": "address of the user"
+          },
+          "city": {
+            "type": "string",
+            "description": "city of the user"
+          },
+          "state": {
+            "type": "string",
+            "description": "state of the user"
+          },
+          "country": {
+            "type": "string",
+            "description": "country of the user"
+          },
+          "zipcode": {
+            "type": "number",
+            "description": "zipcode of the user"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "description": "delete status of the account"
+          }
+        }
+      },
+      "user_update_response": {
+        "title": "user Update Response Model",
+        "additionalProperties": false,
+        "type": "object",
         "properties": {
           "success": {
             "type": "boolean"
           },
           "statusCode": {
             "type": "integer"
+          },
+          "successMessage": {
+            "type": "string",
+            "description": "Success Message of the request"
+          }
+        }
+      },
+      "user_login_request": {
+        "type": "object",
+        "title": "Login Request Model",
+        "additionalProperties": false,
+        "example": {
+          "email": "manibharathi@gmail.com",
+          "password": "manibharathi@123"
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 120,
+            "description": "Email of the user"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 16,
+            "description": "Password defined by the user"
+          }
+        }
+      },
+      "login_response_success": {
+        "type": "object",
+        "title": "Login Response Model",
+        "additionalProperties": false,
+        "example": {
+          "success": true,
+          "statusCode": 200,
+          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg",
+          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJCYWxhamkiLCJsYXN0TmFtZSI6Ikxha3NobWkgTmFyYXlhbmFuIiwiZW1haWwiOiJsYmFsYWppQGxpdmUuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5NzkxMTA1NzE3IiwiaWF0IjoxNTg3MTE4MDc1LCJleHAiOjE1ODcxMTgxMTF9.7moCBW6hOCkvWF4iN4zvY_Bvi0vXFlvBA-hfw08lncg",
+          "role": "user"
+        },
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "statusCode": {
+            "type": "integer"
+          },
+          "accessToken": {
+            "type": "string",
+            "description": "Token used to authenticate other endpoints. Pass 'Authentication' in Header."
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh Token used to generate new access token"
+          }
+        }
+      },
+      "add_user_request": {
+        "title": "user Request Model",
+        "type": "object",
+        "example": {
+          "email": "manibharathi@gmail.com",
+          "firstName": "Mani",
+          "lastName": "Bharathi",
+          "password": "password@123",
+          "contact": 9876543210,
+          "bloodGroup": "O positive",
+          "dateOfBirth": "01-06-2002",
+          "gender": "F",
+          "address": "81/54, jeeva nagar",
+          "city": "Thanjavur",
+          "state": "Tamilnadu",
+          "country": "India",
+          "Zipcode": 614612,
+          "isDeleted": false
+        },
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "email of the user"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "firstName of the user"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "lastName of the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "password of the user"
+          },
+          "contact": {
+            "type": "number",
+            "description": "phoneNo of the user"
+          },
+          "bloodGroup": {
+            "type": "string",
+            "description": "BloodGroup of the user"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "dateOfBirth of the user"
+          },
+          "gender": {
+            "type": "string",
+            "description": "gender of the user"
+          },
+          "address": {
+            "type": "string",
+            "description": "address of the user"
+          },
+          "city": {
+            "type": "string",
+            "description": "city of the user"
+          },
+          "state": {
+            "type": "string",
+            "description": "state of the user"
+          },
+          "country": {
+            "type": "string",
+            "description": "country of the user"
+          },
+          "zipcode": {
+            "type": "number",
+            "description": "zipcode of the user"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "description": "delete status of the account"
+          }
+        }
+      },
+      "add_user_response": {
+        "title": "user Response Model",
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Success Status"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Success Status Code"
           },
           "successMessage": {
             "type": "string",

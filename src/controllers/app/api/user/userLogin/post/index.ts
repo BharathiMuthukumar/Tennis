@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import users from '../../../models/userModel';
+import users from '@src/models/userModel';
 import bcrypt from "bcryptjs";
-import { ErrorMessageCode, logger } from "../../../utils/default";
+import { ErrorMessageCode, logger } from "@src/utils/default";
 import { HydratedDocument } from "mongoose";
-import { generateUserLoginResponse} from "../../../helpers/auth/LoginHelper";
+import { generateUserLoginResponse} from "@helpers/auth/LoginHelper";
 export default  () =>
 async (
   req: Request<RequestBody>,

@@ -1,18 +1,12 @@
 openapi: 3.0.0
 info:
-  title: JetSynthesis Application API Server
+  title: Tennis Application API Server
   description: '<i>The convention industry has forever changed. However, the need for us to come together as a community has never been greater. There will never be a substitute for human contact, but giving people an alternative method to staying connected is our mission. Why sacrifice if you could do both?
 </i><p><strong>Download swagger JSON document from <a href="/bo/swagger.json">Click here</a></strong><p>'
   version: 0.1.0
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:3001
     description: Local Development Sever
-  - url: https://jetsynthesys-api-app.augustasoftsol.com
-    description: Hosted Development Sever
-  - url: https://qa.rightlife.com/api
-    description: Hosted QA Sever
-  - url: https://stage.rightlife.com/api
-    description: Hosted Stage Sever
 paths: {}
 components:
   securitySchemes:

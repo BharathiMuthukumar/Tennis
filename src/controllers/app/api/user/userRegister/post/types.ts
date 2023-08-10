@@ -18,10 +18,6 @@ export interface RequestBody {
    */
   password?: string;
   /**
-   * of the user
-   */
-  userId?: string;
-  /**
    * phoneNo of the user
    */
   contact?: number;

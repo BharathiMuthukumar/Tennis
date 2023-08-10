@@ -1,5 +1,5 @@
 paths:
-    /user/get:
+    /app/api/user/getUser:
         get:
             summary: Get user List
             description: This request is used to get user List.

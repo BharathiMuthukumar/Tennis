@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "@express-types";
 import { RequestBody, PathParams, QueryParams, ResponseBody } from "./types";
-import users from '../../../models/userModel';
-import { ErrorMessageCode, logger } from "../../../utils/default";
+import users from '@src/models/userModel';
+import { ErrorMessageCode, logger } from "@src/utils/default";
 
 export default () =>
 	async (
