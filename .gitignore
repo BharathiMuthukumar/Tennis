@@ -4,4 +4,4 @@ package.json
 node_modules
 tsconfig.json
 logs/application.log
-
+logs/application.log
