@@ -89,3 +89,4 @@
 2023-08-10 15:00:24 info: app Server listening at port 3001 
 2023-08-10 15:00:24 info: Connected to MongoDB 
 2023-08-10 15:00:24 info: Connected to MongoDB 
+2023-08-11 10:00:28 info: Database: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. 
